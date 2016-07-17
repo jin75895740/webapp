@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seecen.sys.dao.IUserDao">
+  
+  <resultMap extends="com.poly.entity.BaseBean.baseMap" id="userMap" type="User">
+    <id column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USER_ACCOUNT" property="userAccount" jdbcType="VARCHAR" />
+    <result column="USER_PWD" property="userPwd" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="user_colomn" >
+    USER_ID,USER_ACCOUNT,USER_PWD,
+    <include refid="com.poly.entity.BaseBean.basebean_colomn" />
+  </sql>
+  
+  <select id="findUserByAccount" resultMap="userMap" parameterType="string" >
+    SELECT <include refid="user_colomn" /> FROM SEMS_USER where USER_ACCOUNT = #{account,jdbcType=VARCHAR} and state = 1
+  </select>
+  
+</mapper>

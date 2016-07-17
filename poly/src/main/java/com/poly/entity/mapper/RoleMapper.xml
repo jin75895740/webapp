@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seecen.sys.dao.IRoleDao">
+
+  <resultMap extends="com.poly.entity.BaseBean.baseMap" id="roleMap" type="Role">
+    <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="role_colomn" >
+    ROLE_ID,ROLE_NAME,ROLE_CODE,
+    <include refid="com.poly.entity.BaseBean.basebean_colomn" />
+  </sql>
+  
+  <!-- 根据账户查询拥有的角色代码 -->
+  <select id="findRolesByAccount" resultType="string" parameterType="string" >
+    select r.ROLE_CODE from sems_user_role ur,
+    sems_role r where ur.role_code=r.role_code and 
+    r.state = 1 and USER_ACCOUNT = #{account,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

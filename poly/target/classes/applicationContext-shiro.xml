@@ -39,8 +39,9 @@
 		<!-- shiro连接约束配置，即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/teacher = perms["teacher:create"]
-				/student = roles["student"]
+				<!-- @RequiresRoles(value = { "admin", "advuser" }, logical = Logical.OR) -->
+				<!-- /teacher = perms["approve"] -->
+				<!--/approve* = roles["Finance"] -->
 				/js/** = anon
 				/css/** = anon
 				/img/** = anon

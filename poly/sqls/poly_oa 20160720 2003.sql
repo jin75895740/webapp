@@ -234,8 +234,8 @@ DROP TABLE IF EXISTS `t_poly_position`;
 CREATE TABLE `t_poly_position` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '职位id',
   `name` varchar(45) NOT NULL COMMENT '职位名称',
+  `code` varchar(45) NOT NULL COMMENT '职位代码',
   `deptno` varchar(45) NOT NULL COMMENT '职位所在的部门编号',
-  `totalmoney` int(10) unsigned NOT NULL COMMENT '职位所能批准的付款金额',
   PRIMARY KEY (`id`),
   KEY `FK_t_position_dept` (`deptno`),
   CONSTRAINT `FK_t_position_dept` FOREIGN KEY (`deptno`) REFERENCES `t_poly_dept` (`deptno`)

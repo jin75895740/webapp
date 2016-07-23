@@ -2,20 +2,20 @@ package com.poly.entity;
 
 public class PolyPosition {
 	private int posId;
-	private String posName;
+	private String name;
 	private PolyDept polyDept;
-	private int totalMoney;
+	private String code;
 	public int getPosId() {
 		return posId;
 	}
 	public void setPosId(int posId) {
 		this.posId = posId;
 	}
-	public String getPosName() {
-		return posName;
+	public String getName() {
+		return name;
 	}
-	public void setPosName(String posName) {
-		this.posName = posName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public PolyDept getPolyDept() {
 		return polyDept;
@@ -23,10 +23,10 @@ public class PolyPosition {
 	public void setPolyDept(PolyDept polyDept) {
 		this.polyDept = polyDept;
 	}
-	public int getTotalMoney() {
-		return totalMoney;
+	public String getCode() {
+		return code;
 	}
-	public void setTotalMoney(int totalMoney) {
-		this.totalMoney = totalMoney;
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.poly.entity.User;
+import com.poly.entity.PolyUser;
 
 @Controller
 @RequestMapping("/")
@@ -21,9 +21,9 @@ public class Login {
 	private Logger log = Logger.getLogger(Login.class);
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(User user, HttpSession session) {
+	public String login(PolyUser user, HttpSession session) {
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getUserAccount(), user.getUserPwd());
+		UsernamePasswordToken token = new UsernamePasswordToken(user.getAccount(), user.getPwd());
 		try {
 			subject.login(token);
 //			User loginUser = (User) subject.getPrincipal();

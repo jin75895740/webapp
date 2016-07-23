@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
 <configuration>  
-    <!-- 
     <typeAliases>  
-        <typeAlias type="com.seecen.entity.Permission" alias="Permission"/>
-        <typeAlias type="com.seecen.entity.Role" alias="Role"/>
-        <typeAlias type="com.seecen.entity.User" alias="User"/>
-        <typeAlias type="com.seecen.entity.Classes" alias="Classes"/>   
+        <typeAlias type="com.poly.entity.PolyUser" alias="PolyUser"/>
+        <typeAlias type="com.poly.entity.PolyDept" alias="PolyDept"/>
+        <typeAlias type="com.poly.entity.PolyPosition" alias="PolyPosition"/>
     </typeAliases> 
-    -->
 </configuration>  

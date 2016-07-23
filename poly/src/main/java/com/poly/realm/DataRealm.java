@@ -1,5 +1,8 @@
 package com.poly.realm;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -11,19 +14,13 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import com.poly.entity.User;
-import com.poly.sys.service.IPermissionService;
-import com.poly.sys.service.IRoleService;
-import com.poly.sys.service.IUserService;
+import com.poly.entity.PolyUser;
+import com.poly.sys.service.IPolyUserService;
 
 public class DataRealm extends AuthorizingRealm {
 	
 	@Resource
-	private IUserService userService;
-	@Resource
-	private IRoleService roleService;
-	@Resource
-	private IPermissionService permissionService;
+	private IPolyUserService userService;
 	
 	/**
 	 * 为通过验证的用户授权
@@ -32,8 +29,11 @@ public class DataRealm extends AuthorizingRealm {
 		// 取得通过验证的用户的用户名
 		String account = (String)principal.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-		authorizationInfo.setRoles(roleService.findRolesByAccount(account));
-		authorizationInfo.setStringPermissions(permissionService.findPermissionsByAccount(account));
+		PolyUser user = userService.findUserByAccount(account);
+		Set<String> set = new HashSet<String>();
+		set.add(user.getPolyPos().getCode());
+		authorizationInfo.setRoles(set);
+		//authorizationInfo.setStringPermissions(permissionService.findPermissionsByAccount(account));
 		return authorizationInfo;
 	}
 
@@ -44,9 +44,9 @@ public class DataRealm extends AuthorizingRealm {
 		AuthenticationInfo authcInfo = null;
 		String account = (String)token.getPrincipal();
 		// 查询是否存在该账户
-		User user = userService.findUserByAccount(account);
+		PolyUser user = userService.findUserByAccount(account);
 		if(user != null) {
-			authcInfo = new SimpleAuthenticationInfo(user.getUserAccount(), user.getUserPwd(), "authcInfo");
+			authcInfo = new SimpleAuthenticationInfo(user.getAccount(), user.getPwd(), "authcInfo");
 		}
 		return authcInfo;
 	}
